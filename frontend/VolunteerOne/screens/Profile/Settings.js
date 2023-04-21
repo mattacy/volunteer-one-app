@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from "react-native";
+import { StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import { Block, theme, Text } from "galio-framework";
 const { width,height } = Dimensions.get("screen");
-
+import { withNavigation } from '@react-navigation/compat';
 import { Images, argonTheme } from "../../constants";
 import { TextInput } from "react-native-gesture-handler";
 import mockData from "../../constants/ProfileTab/profile";
@@ -11,7 +11,7 @@ import mockData from "../../constants/ProfileTab/profile";
 
 class Settings extends React.Component {
   render() {
-
+    const { navigation } = this.props;
     function handleNameSetting(input) {
       console.log(input);      
     }
@@ -63,6 +63,7 @@ class Settings extends React.Component {
         </Block>
         <Block style={styles.settingContainer}>
           <Block>
+          <TouchableWithoutFeedback onPress={() => navigation.push('Profile', {theUser: "Noah Fernandez",})}> 
                 <Text 
                   color="#000000" 
                   size={20}
@@ -70,6 +71,7 @@ class Settings extends React.Component {
                 >
                   Email 
                 </Text>
+          </TouchableWithoutFeedback>
           </Block>
           <TextInput
               paddingLeft={50}
